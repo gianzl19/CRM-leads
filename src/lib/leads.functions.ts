@@ -3,11 +3,13 @@ import { z } from "zod";
 
 export type Lead = { nome: string; empresa: string; valor: string | null; etapa: string | null };
 
+export const ETAPAS = ["Novo", "Em contato", "Fechado"] as const;
+
 export const leadSchema = z.object({
   nome: z.string().trim().min(1, "Informe o nome").max(200),
   empresa: z.string().trim().min(1, "Informe a empresa").max(200),
   valor: z.number().finite().min(0, "Valor inválido").max(1e12),
-  etapa: z.string().trim().min(1, "Informe a etapa").max(100),
+  etapa: z.enum(ETAPAS),
 });
 
 export const getLeads = createServerFn({ method: "GET" }).handler(async () => {
