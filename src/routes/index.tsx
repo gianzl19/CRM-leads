@@ -80,6 +80,7 @@ function Index() {
     <main className="mx-auto max-w-5xl px-6 py-12">
       <h1 className="text-3xl font-bold text-foreground">Leads</h1>
       <p className="mt-1 text-sm text-muted-foreground">{leads.length} leads</p>
+      <NovoLeadForm />
       <div className="mt-6 overflow-x-auto rounded-lg border">
         <table className="w-full text-sm">
           <thead className="bg-muted text-left text-muted-foreground">
