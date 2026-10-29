@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { queryOptions, useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState, type FormEvent } from "react";
-import { createLead, getLeads, leadSchema } from "@/lib/leads.functions";
+import { createLead, ETAPAS, getLeads, leadSchema, updateLeadEtapa, type Lead } from "@/lib/leads.functions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function NovoLeadForm() {
   const qc = useQueryClient();
