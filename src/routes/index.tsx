@@ -128,7 +128,7 @@ function Index() {
                 <td className="px-4 py-3 text-foreground">{l.nome}</td>
                 <td className="px-4 py-3 text-foreground">{l.empresa}</td>
                 <td className="px-4 py-3 text-right tabular-nums text-foreground">{formatValor(l.valor)}</td>
-                <td className="px-4 py-3 text-foreground">{l.etapa ?? "—"}</td>
+                <td className="px-4 py-3 text-foreground"><EtapaSelect lead={l} /></td>
               </tr>
             ))}
             {leads.length === 0 && (
