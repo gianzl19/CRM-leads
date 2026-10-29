@@ -29,3 +29,24 @@ export const createLead = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+export const updateLeadEtapa = createServerFn({ method: "POST" })
+  .inputValidator((d) =>
+    z
+      .object({
+        nome: z.string().min(1).max(200),
+        empresa: z.string().min(1).max(200),
+        etapa: z.enum(ETAPAS),
+      })
+      .parse(d),
+  )
+  .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("leads")
+      .update({ etapa: data.etapa })
+      .eq("nome", data.nome)
+      .eq("empresa", data.empresa);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
