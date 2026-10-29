@@ -40,7 +40,15 @@ function NovoLeadForm() {
       <div className="grid gap-1.5"><Label htmlFor="nome">Nome</Label><Input id="nome" value={form.nome} onChange={set("nome")} maxLength={200} /></div>
       <div className="grid gap-1.5"><Label htmlFor="empresa">Empresa</Label><Input id="empresa" value={form.empresa} onChange={set("empresa")} maxLength={200} /></div>
       <div className="grid gap-1.5"><Label htmlFor="valor">Valor (R$)</Label><Input id="valor" type="number" step="0.01" min="0" value={form.valor} onChange={set("valor")} /></div>
-      <div className="grid gap-1.5"><Label htmlFor="etapa">Etapa</Label><Input id="etapa" value={form.etapa} onChange={set("etapa")} maxLength={100} /></div>
+      <div className="grid gap-1.5">
+        <Label htmlFor="etapa">Etapa</Label>
+        <Select value={form.etapa} onValueChange={(v) => setForm({ ...form, etapa: v })}>
+          <SelectTrigger id="etapa"><SelectValue placeholder="Selecione" /></SelectTrigger>
+          <SelectContent>
+            {ETAPAS.map((e) => <SelectItem key={e} value={e}>{e}</SelectItem>)}
+          </SelectContent>
+        </Select>
+      </div>
       <div className="flex items-center gap-3 sm:col-span-4">
         <Button type="submit" disabled={mutation.isPending}>{mutation.isPending ? "Salvando..." : "Adicionar lead"}</Button>
         {erro && <p className="text-sm text-destructive">{erro}</p>}
@@ -73,6 +81,28 @@ function formatValor(v: string | null) {
   const s = v.trim().replace(/[R$\s]/g, "");
   const n = Number(s.includes(",") ? s.replace(/\./g, "").replace(",", ".") : s);
   return Number.isFinite(n) ? brl.format(n) : v;
+}
+
+function EtapaSelect({ lead }: { lead: Lead }) {
+  const qc = useQueryClient();
+  const update = useServerFn(updateLeadEtapa);
+  const mutation = useMutation({
+    mutationFn: update,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["leads"] }),
+  });
+  const atual = lead.etapa && (ETAPAS as readonly string[]).includes(lead.etapa) ? lead.etapa : undefined;
+  return (
+    <Select
+      value={atual}
+      disabled={mutation.isPending}
+      onValueChange={(v) => mutation.mutate({ data: { nome: lead.nome, empresa: lead.empresa, etapa: v as (typeof ETAPAS)[number] } })}
+    >
+      <SelectTrigger className="w-36"><SelectValue placeholder={lead.etapa ?? "Selecione"} /></SelectTrigger>
+      <SelectContent>
+        {ETAPAS.map((e) => <SelectItem key={e} value={e}>{e}</SelectItem>)}
+      </SelectContent>
+    </Select>
+  );
 }
 
 function Index() {
