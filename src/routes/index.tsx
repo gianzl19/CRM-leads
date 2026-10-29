@@ -93,7 +93,7 @@ function EtapaSelect({ lead }: { lead: Lead }) {
   const atual = lead.etapa && (ETAPAS as readonly string[]).includes(lead.etapa) ? lead.etapa : undefined;
   return (
     <Select
-      value={atual}
+      value={atual ?? ""}
       disabled={mutation.isPending}
       onValueChange={(v) => mutation.mutate({ data: { nome: lead.nome, empresa: lead.empresa, etapa: v as (typeof ETAPAS)[number] } })}
     >
