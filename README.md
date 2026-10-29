@@ -1,6 +1,6 @@
 # Leads em Foco
 
-Conecte este app à minha tabela "leads" no Supabase, que tem as colunas nome, empresa, valor e etapa. Crie uma tela que mostra todos os leads em uma tabela, com uma linha por lead e uma coluna para cada campo. Mostre o valor formatado em reais.
+CRM para listar e adicionar leads.
 
 This project was built with [Lovable](https://lovable.dev).
 
@@ -22,3 +22,7 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+## Diário
+- A IA sugeriu adicionar um login e formatar a categoria de valor como R$
+- Aceitei ela formatar a categoria de valor
+- Recusei a inserção de uma forma de login
