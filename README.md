@@ -23,6 +23,6 @@ npm i
 npm run dev
 ```
 ## Diário
-A IA sugeriu adicionar um login e formatar a categoria de valor como R$
-Aceitei ela formatar a categoria de valor
-Recusei a inserção de uma forma de login
+- A IA sugeriu adicionar um login e formatar a categoria de valor como R$
+- Aceitei ela formatar a categoria de valor
+- Recusei a inserção de uma forma de login
