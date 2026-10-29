@@ -26,3 +26,9 @@ npm run dev
 - A IA sugeriu adicionar um login e formatar a categoria de valor como R$
 - Aceitei ela formatar a categoria de valor
 - Recusei a inserção de uma forma de login
+
+## Perguntas
+1.
+- Ele fica guardado no banco (na tabela que criei no supabase)
+2.
+- Ela é apagada no site também, pois a tela só mostra o que está no banco (tabela do supabase)
