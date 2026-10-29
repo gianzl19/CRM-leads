@@ -28,7 +28,8 @@ npm run dev
 - Recusei a inserção de uma forma de login
 
 ## Perguntas
-1.
+1. "Onde este dado fica guardado?"
 - Ele fica guardado no banco (na tabela que criei no supabase)
-2.
+
+2."O que acontece se eu apagar esta linha no Supabase?"
 - Ela é apagada no site também, pois a tela só mostra o que está no banco (tabela do supabase)
